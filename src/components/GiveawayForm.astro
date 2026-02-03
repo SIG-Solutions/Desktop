@@ -1,0 +1,189 @@
+---
+interface Props {
+  formId?: string;
+}
+
+const { formId = 'giveaway' } = Astro.props;
+
+const businessTypes = [
+  'E-commerce / Online Store',
+  'Professional Services',
+  'SaaS / Software',
+  'Agency / Consultancy',
+  'Health & Wellness',
+  'Education / Training',
+  'Real Estate',
+  'Finance / Insurance',
+  'Other',
+];
+---
+
+<form
+  id={formId}
+  class="giveaway-form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+>
+  <!-- Replace with your Web3Forms access key -->
+  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+  <input type="hidden" name="subject" value="New Giveaway Entry - LeadLabs" />
+  <input type="hidden" name="from_name" value="LeadLabs Website" />
+
+  <!-- Honeypot for spam prevention -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="giveaway-name" class="form-label">Full Name</label>
+      <input
+        type="text"
+        id="giveaway-name"
+        name="name"
+        class="form-input"
+        required
+        placeholder="Your name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="giveaway-email" class="form-label">Email</label>
+      <input
+        type="email"
+        id="giveaway-email"
+        name="email"
+        class="form-input"
+        required
+        placeholder="your@email.com"
+      />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="giveaway-business" class="form-label">Business Name</label>
+      <input
+        type="text"
+        id="giveaway-business"
+        name="business_name"
+        class="form-input"
+        required
+        placeholder="Your business name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="giveaway-website" class="form-label">Website (optional)</label>
+      <input
+        type="url"
+        id="giveaway-website"
+        name="website"
+        class="form-input"
+        placeholder="https://yoursite.com"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="giveaway-type" class="form-label">What best describes your business?</label>
+    <select id="giveaway-type" name="business_type" class="form-select" required>
+      <option value="">Select an option</option>
+      {businessTypes.map(type => (
+        <option value={type}>{type}</option>
+      ))}
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg submit-btn">
+    Enter the Draw
+  </button>
+</form>
+
+<style>
+  .giveaway-form {
+    max-width: 600px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+
+  @media (max-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector('.giveaway-form') as HTMLFormElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Track Meta Pixel Lead event
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead');
+        }
+
+        // Track GA4 event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'giveaway_entry', {
+            event_category: 'conversion',
+            event_label: 'website_giveaway'
+          });
+        }
+
+        form.innerHTML = `
+          <div class="success-message">
+            <h3>You're in the draw.</h3>
+            <p>We'll be in touch if you're selected. Good luck.</p>
+          </div>
+        `;
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
+
+<style>
+  .success-message {
+    text-align: center;
+    padding: var(--space-8) 0;
+  }
+
+  .success-message h3 {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-purple);
+  }
+
+  .success-message p {
+    color: var(--color-muted-text);
+  }
+</style>

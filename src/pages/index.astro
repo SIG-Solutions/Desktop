@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import CaseCard from '../components/CaseCard.astro';
+import GiveawayForm from '../components/GiveawayForm.astro';
+import FilterSection from '../components/FilterSection.astro';
+
+const capabilities = [
+  {
+    title: 'Go-To-Market Strategy',
+    description: 'We diagnose why products don\'t convert and rebuild the path to revenue.'
+  },
+  {
+    title: 'Offer & Funnel Architecture',
+    description: 'We restructure offers and funnels until the conversion math works.'
+  },
+  {
+    title: 'Paid Acquisition (Meta-first)',
+    description: 'We build and run paid acquisition systems optimized for revenue, not vanity metrics.'
+  },
+  {
+    title: 'Conversion Optimization',
+    description: 'We test, iterate, and improve every step from click to close.'
+  },
+  {
+    title: 'Scale & Optimization Loops',
+    description: 'We build feedback loops so growth compounds instead of stalling.'
+  }
+];
+
+const featuredCases = [
+  {
+    slug: 'insurance-acquisition',
+    category: 'Insurance',
+    problem: 'High CPA was killing growth potential',
+    outcome: 'Reduced acquisition cost by restructuring offer and funnel flow'
+  },
+  {
+    slug: 'membership-platform',
+    category: 'Membership',
+    problem: 'Traffic wasn\'t converting to paid members',
+    outcome: 'Built conversion system that tripled trial-to-paid rate'
+  },
+  {
+    slug: 'compliance-saas',
+    category: 'Compliance SaaS',
+    problem: 'No repeatable acquisition channel',
+    outcome: 'Built scalable paid acquisition system from scratch'
+  },
+  {
+    slug: 'ecommerce-brand',
+    category: 'E-commerce',
+    problem: 'ROAS declining as spend increased',
+    outcome: 'Stabilized returns through offer and creative restructuring'
+  }
+];
+
+const giveawayBenefits = [
+  'Conversion-focused structure',
+  'Modern, fast design',
+  'Built for paid traffic',
+  'GTM-ready'
+];
+---
+
+<BaseLayout title="LeadLabs" currentPath="/">
+  <!-- Section 1: Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>We design GTM systems that convert — then scale them.</h1>
+        <p class="hero-subhead">
+          We help serious businesses turn demand into revenue through conversion-first go-to-market execution.
+        </p>
+        <div class="hero-actions">
+          <a href="#giveaway" class="btn btn-primary btn-lg">
+            Win a Free Website (R8 999 Value)
+          </a>
+          <a href="/work" class="link-arrow">View Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Proof Strip -->
+  <ProofStrip />
+
+  <!-- Section 3: What We Actually Do -->
+  <section class="capabilities-section section">
+    <div class="container">
+      <h2 class="section-title">What We Actually Do</h2>
+      <p class="section-subtitle text-muted">
+        We treat GTM as a system, not a list of tactics.
+      </p>
+
+      <div class="capabilities-grid">
+        {capabilities.map(cap => (
+          <div class="capability-item">
+            <h3>{cap.title}</h3>
+            <p>{cap.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <a href="/capabilities" class="link-arrow mt-8">See All Capabilities</a>
+    </div>
+  </section>
+
+  <!-- Section 4: Featured Work -->
+  <section class="work-section section" style="background-color: #FAFAFA;">
+    <div class="container">
+      <h2 class="section-title">Featured Work</h2>
+      <p class="section-subtitle text-muted">
+        Real problems. Real systems. Real outcomes.
+      </p>
+
+      <div class="cases-grid">
+        {featuredCases.map(caseItem => (
+          <CaseCard {...caseItem} />
+        ))}
+      </div>
+
+      <a href="/work" class="link-arrow mt-8">View All Work</a>
+    </div>
+  </section>
+
+  <!-- Section 5: Giveaway -->
+  <section id="giveaway" class="giveaway-section section-lg">
+    <div class="container">
+      <div class="giveaway-content">
+        <div class="giveaway-info">
+          <h2>Win a High-Conversion Website (R8 999 Value)</h2>
+          <p class="giveaway-description">
+            We're giving one business a professionally built, conversion-optimized website — no templates, no fluff, no strings.
+          </p>
+
+          <ul class="giveaway-benefits">
+            {giveawayBenefits.map(benefit => (
+              <li>{benefit}</li>
+            ))}
+          </ul>
+
+          <p class="giveaway-note text-muted text-sm">
+            Serious businesses only. We choose based on fit.
+          </p>
+        </div>
+
+        <div class="giveaway-form-wrapper">
+          <GiveawayForm />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Filter -->
+  <FilterSection />
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    padding: var(--space-24) 0 var(--space-20);
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero h1 {
+    font-size: var(--text-5xl);
+    line-height: 1.1;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-subhead {
+    font-size: var(--text-xl);
+    color: var(--color-muted-text);
+    max-width: 600px;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  /* Section Titles */
+  .section-title {
+    margin-bottom: var(--space-2);
+  }
+
+  .section-subtitle {
+    margin-bottom: var(--space-12);
+  }
+
+  /* Capabilities Grid */
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-12);
+  }
+
+  .capability-item h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  .capability-item p {
+    font-size: var(--text-base);
+    color: var(--color-muted-text);
+    margin: 0;
+  }
+
+  /* Cases Grid */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  /* Giveaway Section */
+  .giveaway-section {
+    border-top: 1px solid var(--color-light-grey);
+    border-bottom: 1px solid var(--color-light-grey);
+  }
+
+  .giveaway-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .giveaway-info h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .giveaway-description {
+    font-size: var(--text-lg);
+    color: var(--color-muted-text);
+    margin-bottom: var(--space-6);
+  }
+
+  .giveaway-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6) 0;
+  }
+
+  .giveaway-benefits li {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-2);
+    font-size: var(--text-base);
+  }
+
+  .giveaway-benefits li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary-purple);
+    font-weight: var(--font-bold);
+  }
+
+  .giveaway-note {
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .capabilities-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .giveaway-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .hero h1 {
+      font-size: var(--text-4xl);
+    }
+
+    .hero-subhead {
+      font-size: var(--text-lg);
+    }
+
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

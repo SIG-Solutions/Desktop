@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="LeadLabs is a GTM studio that takes responsibility for outcomes, not activities. Hands-on execution. No junior account managers."
+  currentPath="/about"
+>
+  <section class="about-hero section">
+    <div class="container">
+      <h1>About LeadLabs</h1>
+    </div>
+  </section>
+
+  <section class="about-content">
+    <div class="container">
+      <div class="about-main">
+        <div class="about-section">
+          <h2>We take responsibility for outcomes, not activities.</h2>
+          <p>
+            LeadLabs is a GTM studio. We help businesses turn demand into revenue through conversion-first execution.
+          </p>
+          <p>
+            We're not a marketing agency. We don't sell hours or impressions or "brand awareness." We build systems that convert — then we optimize them until they scale.
+          </p>
+        </div>
+
+        <div class="about-section">
+          <h2>How we work</h2>
+          <p>
+            We work hands-on. No junior account managers. No outsourced execution. When you work with LeadLabs, you work with the people doing the work.
+          </p>
+          <p>
+            We're a small team by design. This means we can only take on a handful of clients at any time. We'd rather do exceptional work for a few than mediocre work for many.
+          </p>
+          <p>
+            We focus on what actually moves revenue: offer design, funnel architecture, paid acquisition, and conversion optimization. If it doesn't contribute to growth, we don't do it.
+          </p>
+        </div>
+
+        <div class="about-section">
+          <h2>What we believe</h2>
+          <ul class="beliefs">
+            <li>
+              <strong>Proof over explanation.</strong> Show the work, don't describe it.
+            </li>
+            <li>
+              <strong>Conversion mechanics over vibes.</strong> Every element earns its place.
+            </li>
+            <li>
+              <strong>Systems over tactics.</strong> Individual optimizations fail without systemic thinking.
+            </li>
+            <li>
+              <strong>Outcomes over activities.</strong> We measure what matters: revenue.
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-section">
+          <h2>Who's behind this</h2>
+          <p>
+            LeadLabs was founded by someone who got tired of watching businesses waste money on marketing that doesn't convert. After years of building GTM systems — first in-house, then for clients — the pattern became clear: most growth problems are conversion problems dressed up as traffic problems.
+          </p>
+          <p>
+            We built LeadLabs to fix that. One business at a time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta section" style="background-color: #FAFAFA;">
+    <div class="container">
+      <h2>Interested in working together?</h2>
+      <p class="text-muted">We take on a limited number of clients. Apply to work with us.</p>
+      <a href="/contact" class="btn btn-primary btn-lg mt-6">Work With Us</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    padding-bottom: var(--space-8);
+  }
+
+  .about-content {
+    padding-bottom: var(--space-16);
+  }
+
+  .about-main {
+    max-width: 700px;
+  }
+
+  .about-section {
+    margin-bottom: var(--space-12);
+  }
+
+  .about-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-section h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .about-section p {
+    font-size: var(--text-base);
+    line-height: 1.8;
+  }
+
+  .beliefs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .beliefs li {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-base);
+    line-height: 1.7;
+  }
+
+  .beliefs li::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary-purple);
+  }
+
+  .beliefs strong {
+    font-weight: var(--font-semibold);
+  }
+
+  .about-cta {
+    text-align: center;
+  }
+
+  .about-cta h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  @media (max-width: 768px) {
+    .about-section h2 {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

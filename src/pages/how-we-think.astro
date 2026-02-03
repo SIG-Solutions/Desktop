@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Essay {
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+}
+
+const essays: Essay[] = [
+  {
+    slug: 'traffic-doesnt-fix-broken-gtm',
+    title: 'Traffic Doesn\'t Fix Broken GTM',
+    excerpt: 'Buying more traffic into a broken system just accelerates loss.',
+    content: `
+      <p>When growth stalls, the instinct is to buy more traffic. Run more ads. Try a new channel. Get more eyeballs on the problem.</p>
+
+      <p>This almost never works.</p>
+
+      <p>If your funnel converts at 1% and you double traffic, you still convert at 1%. You just paid twice as much to learn that lesson. Traffic is an accelerant. It amplifies whatever system it enters. If the system is broken, traffic accelerates your losses.</p>
+
+      <p>The question isn't "how do we get more traffic?" It's "why isn't our current traffic converting?" Until you answer that, more traffic is just more expensive data collection.</p>
+
+      <p>We've taken over accounts spending six figures monthly on ads that weren't working. The first thing we do is cut spend. Not because we're trying to save money, but because pouring fuel on a broken engine just creates a bigger fire.</p>
+
+      <p>Fix the system first. Traffic comes after.</p>
+    `
+  },
+  {
+    slug: 'conversion-is-a-systems-problem',
+    title: 'Conversion Is a Systems Problem',
+    excerpt: 'Optimizing individual tactics fails without systemic thinking.',
+    content: `
+      <p>Most CRO is tactical. Test this button. Change that headline. Move the form above the fold. These tests might produce wins, but they rarely produce transformation.</p>
+
+      <p>That's because conversion isn't a button problem. It's a systems problem.</p>
+
+      <p>A visitor arrives with intent. Your job is to align every touchpoint with that intent until they convert. The ad sets an expectation. The landing page delivers on it. The form captures information worth exchanging. The follow-up reinforces the decision.</p>
+
+      <p>When any link in this chain breaks, conversion suffers. You can optimize the landing page all day, but if the ad promises something the page doesn't deliver, no headline will save you.</p>
+
+      <p>Systems thinking means understanding the whole journey, not just the parts. It means asking "why doesn't this work?" before "what should we test?"</p>
+
+      <p>The companies that win at conversion aren't running more tests. They're thinking about the system.</p>
+    `
+  },
+  {
+    slug: 'why-scale-exposes-weak-offers',
+    title: 'Why Scale Exposes Weak Offers',
+    excerpt: 'What works at low volume often collapses under real demand.',
+    content: `
+      <p>Your offer worked at $5k/month in spend. You doubled to $10k and ROAS held. You pushed to $20k and things got shakier. At $50k, the whole thing fell apart.</p>
+
+      <p>This is normal. And it's not a targeting problem.</p>
+
+      <p>At low spend, you're reaching the warmest, most aligned segment of your audience. These are the people who were almost ready to buy anyway. You're skimming demand, not creating it.</p>
+
+      <p>As spend increases, you reach colder audiences. People who aren't looking for you. People who need convincing. Your offer has to work harder. If it's weak, scale exposes it.</p>
+
+      <p>The solution isn't to retreat to low spend. It's to build an offer strong enough to survive cold traffic. That means clearer value propositions. Stronger proof. Better risk reversal. More compelling reasons to act now.</p>
+
+      <p>Scale doesn't break good offers. It breaks weak ones. If you want to scale, strengthen your offer first.</p>
+    `
+  }
+];
+---
+
+<BaseLayout
+  title="How We Think"
+  description="Essays on GTM strategy, conversion systems, and scaling growth. LeadLabs thinking on what actually works."
+  currentPath="/how-we-think"
+>
+  <section class="essays-hero section">
+    <div class="container">
+      <h1>How We Think</h1>
+      <p class="essays-intro">
+        Short essays on what actually works in GTM. No fluff. No SEO filler.
+      </p>
+    </div>
+  </section>
+
+  <section class="essays-list">
+    <div class="container">
+      {essays.map((essay, index) => (
+        <article id={essay.slug} class="essay">
+          <header class="essay-header">
+            <h2>{essay.title}</h2>
+            <p class="essay-excerpt">{essay.excerpt}</p>
+          </header>
+
+          <div class="essay-content" set:html={essay.content} />
+
+          {index < essays.length - 1 && <hr class="divider" />}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="essays-cta section" style="background-color: #FAFAFA;">
+    <div class="container">
+      <h2>Ready to apply this thinking?</h2>
+      <p class="text-muted">See how we put these ideas into practice.</p>
+      <a href="/work" class="btn btn-primary btn-lg mt-6">View Our Work</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .essays-hero {
+    padding-bottom: var(--space-12);
+  }
+
+  .essays-hero h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .essays-intro {
+    font-size: var(--text-xl);
+    color: var(--color-muted-text);
+    max-width: 600px;
+  }
+
+  .essays-list {
+    padding-bottom: var(--space-8);
+  }
+
+  .essay {
+    scroll-margin-top: calc(var(--header-height) + var(--space-8));
+  }
+
+  .essay-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .essay-header h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  .essay-excerpt {
+    font-size: var(--text-lg);
+    color: var(--color-muted-text);
+    margin: 0;
+  }
+
+  .essay-content {
+    max-width: 700px;
+  }
+
+  .essay-content :global(p) {
+    font-size: var(--text-base);
+    line-height: 1.8;
+    margin-bottom: var(--space-6);
+  }
+
+  .essay-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .essays-cta {
+    text-align: center;
+  }
+
+  .essays-cta h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  @media (max-width: 768px) {
+    .essays-intro {
+      font-size: var(--text-lg);
+    }
+
+    .essay-excerpt {
+      font-size: var(--text-base);
+    }
+  }
+</style>
