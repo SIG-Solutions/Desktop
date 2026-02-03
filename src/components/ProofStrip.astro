@@ -1,0 +1,85 @@
+---
+interface ProofItem {
+  category: string;
+  outcome: string;
+}
+
+const proofItems: ProofItem[] = [
+  {
+    category: 'Insurance',
+    outcome: 'Scaled subscription acquisition'
+  },
+  {
+    category: 'Membership',
+    outcome: 'Reduced CPA through offer restructuring'
+  },
+  {
+    category: 'Compliance',
+    outcome: 'Built conversion system from scratch'
+  },
+  {
+    category: 'E-commerce',
+    outcome: 'Improved ROAS through funnel optimization'
+  }
+];
+---
+
+<section class="proof-strip">
+  <div class="container">
+    <div class="proof-grid">
+      {proofItems.map(item => (
+        <div class="proof-item">
+          <span class="proof-category">{item.category}</span>
+          <p class="proof-outcome">{item.outcome}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof-strip {
+    background-color: var(--color-primary-black);
+    padding: var(--space-12) 0;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+
+  .proof-item {
+    text-align: left;
+  }
+
+  .proof-category {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary-purple);
+    margin-bottom: var(--space-2);
+  }
+
+  .proof-outcome {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .proof-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+</style>

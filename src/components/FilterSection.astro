@@ -1,0 +1,70 @@
+---
+const disqualifiers = [
+  'If you want "more likes"',
+  'If you want cheap leads',
+  "If you don't have a real product",
+  'If you need hand-holding on basic decisions',
+  "If you're not ready to invest in growth"
+];
+---
+
+<section class="filter-section">
+  <div class="container">
+    <div class="filter-content">
+      <h2>LeadLabs is not for everyone.</h2>
+
+      <ul class="disqualifiers">
+        {disqualifiers.map(item => (
+          <li class="disqualifier-item">{item}</li>
+        ))}
+      </ul>
+
+      <p class="filter-closing">If that doesn't scare you, keep going.</p>
+
+      <a href="/contact" class="link-arrow">Work With Us</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .filter-section {
+    background-color: #FAFAFA;
+    padding: var(--space-20) 0;
+  }
+
+  .filter-content {
+    max-width: 600px;
+  }
+
+  .filter-content h2 {
+    margin-bottom: var(--space-8);
+  }
+
+  .disqualifiers {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-8) 0;
+  }
+
+  .disqualifier-item {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-3);
+    color: var(--color-muted-text);
+    font-size: var(--text-base);
+  }
+
+  .disqualifier-item::before {
+    content: '\2013';
+    position: absolute;
+    left: 0;
+    color: var(--color-muted-text);
+  }
+
+  .filter-closing {
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    color: var(--color-primary-black);
+    margin-bottom: var(--space-6);
+  }
+</style>

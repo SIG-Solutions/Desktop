@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found">
+  <section class="error-page">
+    <div class="container">
+      <div class="error-content">
+        <h1>404</h1>
+        <p class="error-message">This page doesn't exist.</p>
+        <p class="error-subtext text-muted">
+          The page you're looking for may have been moved or deleted.
+        </p>
+        <a href="/" class="btn btn-primary mt-8">Back to Home</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .error-content {
+    max-width: 500px;
+  }
+
+  .error-content h1 {
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--color-primary-purple);
+    margin-bottom: var(--space-4);
+  }
+
+  .error-message {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-2);
+  }
+
+  .error-subtext {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .error-content h1 {
+      font-size: 5rem;
+    }
+
+    .error-message {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

@@ -1,0 +1,308 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const budgetRanges = [
+  'Under R20,000/month',
+  'R20,000 - R50,000/month',
+  'R50,000 - R100,000/month',
+  'R100,000+/month',
+  'Not sure yet'
+];
+
+const businessTypes = [
+  'E-commerce / DTC Brand',
+  'SaaS / Software',
+  'Professional Services',
+  'Membership / Subscription',
+  'Agency / Consultancy',
+  'Other'
+];
+---
+
+<BaseLayout
+  title="Work With Us"
+  description="Apply to work with LeadLabs. We work with a limited number of clients who are serious about growth."
+  currentPath="/contact"
+>
+  <section class="contact-hero section">
+    <div class="container">
+      <div class="contact-header">
+        <h1>Work With LeadLabs</h1>
+        <p class="contact-intro">This is not for everyone.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-content">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="contact-description">
+            We work with a limited number of clients at any time. This application helps us understand if there's a fit.
+          </p>
+
+          <div class="contact-expectations">
+            <h3>What to expect</h3>
+            <ul>
+              <li>We review every application personally</li>
+              <li>If there's potential fit, we'll schedule a call</li>
+              <li>No sales pitch — just a conversation about your business</li>
+              <li>If we're not the right fit, we'll tell you</li>
+            </ul>
+          </div>
+
+          <div class="contact-not-ready">
+            <h3>Not ready to apply?</h3>
+            <p>
+              Enter our <a href="/#giveaway">website giveaway</a> instead. It's a good way to see how we work.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <form
+            class="application-form"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+          >
+            <!-- Replace with your Web3Forms access key for applications -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+            <input type="hidden" name="subject" value="New Application - LeadLabs" />
+            <input type="hidden" name="from_name" value="LeadLabs Website" />
+
+            <!-- Honeypot -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+            <div class="form-group">
+              <label for="business-type" class="form-label">Business Type</label>
+              <select id="business-type" name="business_type" class="form-select" required>
+                <option value="">Select an option</option>
+                {businessTypes.map(type => (
+                  <option value={type}>{type}</option>
+                ))}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="product" class="form-label">What do you sell?</label>
+              <input
+                type="text"
+                id="product"
+                name="product"
+                class="form-input"
+                required
+                placeholder="Describe your product or service"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="traction" class="form-label">Current Traction</label>
+              <textarea
+                id="traction"
+                name="traction"
+                class="form-textarea"
+                required
+                placeholder="Revenue, customers, traffic — whatever metrics matter for your business"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="budget" class="form-label">Monthly Budget Range</label>
+              <select id="budget" name="budget" class="form-select" required>
+                <option value="">Select an option</option>
+                {budgetRanges.map(range => (
+                  <option value={range}>{range}</option>
+                ))}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="problem" class="form-label">What's not working?</label>
+              <textarea
+                id="problem"
+                name="problem"
+                class="form-textarea"
+                required
+                placeholder="Be specific. What have you tried? Why do you think it's not working?"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg submit-btn">
+              Apply
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    padding-bottom: var(--space-8);
+  }
+
+  .contact-header h1 {
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-intro {
+    font-size: var(--text-xl);
+    color: var(--color-muted-text);
+  }
+
+  .contact-content {
+    padding-bottom: var(--space-20);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .contact-description {
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    margin-bottom: var(--space-10);
+  }
+
+  .contact-expectations,
+  .contact-not-ready {
+    margin-bottom: var(--space-8);
+  }
+
+  .contact-expectations h3,
+  .contact-not-ready h3 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-expectations ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .contact-expectations li {
+    position: relative;
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-muted-text);
+  }
+
+  .contact-expectations li::before {
+    content: '\2013';
+    position: absolute;
+    left: 0;
+  }
+
+  .contact-not-ready p {
+    font-size: var(--text-sm);
+    color: var(--color-muted-text);
+    margin: 0;
+  }
+
+  .contact-form-wrapper {
+    background-color: #FAFAFA;
+    padding: var(--space-10);
+    border: 1px solid var(--color-light-grey);
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .contact-form-wrapper {
+      padding: var(--space-8);
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector('.application-form') as HTMLFormElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Track Meta Pixel CompleteRegistration event
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'CompleteRegistration');
+        }
+
+        // Track GA4 event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'application_submit', {
+            event_category: 'conversion',
+            event_label: 'work_with_us'
+          });
+        }
+
+        form.innerHTML = `
+          <div class="success-message">
+            <h3>Application received.</h3>
+            <p>We'll review your submission and get back to you if there's a fit.</p>
+          </div>
+        `;
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
+
+<style>
+  .success-message {
+    text-align: center;
+    padding: var(--space-8) 0;
+  }
+
+  .success-message h3 {
+    margin-bottom: var(--space-2);
+    color: var(--color-primary-purple);
+  }
+
+  .success-message p {
+    color: var(--color-muted-text);
+  }
+</style>

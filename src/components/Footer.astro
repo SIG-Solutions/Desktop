@@ -1,0 +1,123 @@
+---
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { href: '/work', label: 'Work' },
+  { href: '/capabilities', label: 'Capabilities' },
+  { href: '/how-we-think', label: 'How We Think' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">LeadLabs</a>
+        <p class="footer-tagline">
+          LeadLabs builds GTM systems optimized for conversion.
+        </p>
+      </div>
+
+      <nav class="footer-nav">
+        {navLinks.map(link => (
+          <a href={link.href} class="footer-link">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; {currentYear} LeadLabs. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-primary-black);
+    color: var(--color-white);
+    padding: var(--space-16) 0 var(--space-8);
+  }
+
+  .footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+
+  .footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-brand {
+    max-width: 400px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-white);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-logo:hover {
+    color: var(--color-white);
+  }
+
+  .footer-tagline {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: var(--space-8);
+  }
+
+  .footer-link {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer-bottom {
+    padding-top: var(--space-8);
+  }
+
+  .footer-copyright {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .footer-main {
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .footer-nav {
+      flex-wrap: wrap;
+      gap: var(--space-4) var(--space-6);
+    }
+  }
+</style>

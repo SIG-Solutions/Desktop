@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Capability {
+  title: string;
+  whyItFails: string;
+  howWeFix: string;
+}
+
+const capabilities: Capability[] = [
+  {
+    title: 'Go-To-Market Strategy',
+    whyItFails: 'Most GTM fails because companies treat it as a marketing problem when it\'s actually a systems problem. They optimize tactics in isolation — better ads, more content, new channels — without understanding why the overall system isn\'t converting.',
+    howWeFix: 'We diagnose the entire path from awareness to revenue. We find where the system breaks down and rebuild it with clear conversion logic at every stage. Strategy means nothing without execution, so we build what we recommend.'
+  },
+  {
+    title: 'Offer & Funnel Architecture',
+    whyItFails: 'Products fail not because they\'re bad, but because the offer doesn\'t match traffic intent. Visitors arrive with specific expectations; when the landing page, messaging, or funnel flow doesn\'t align, they leave.',
+    howWeFix: 'We restructure offers to match what your best customers actually want. We rebuild funnels with one goal: make conversion the obvious next step. Every element earns its place or gets removed.'
+  },
+  {
+    title: 'Paid Acquisition (Meta-first)',
+    whyItFails: 'Most paid acquisition is built for volume, not profitability. Agencies optimize for impressions and clicks because those are easy to report. But impressions don\'t pay bills — only customers do.',
+    howWeFix: 'We build acquisition systems optimized for revenue, not vanity metrics. We focus on Meta because it still offers the best targeting for most B2C and many B2B products. We manage campaigns in-house, so feedback loops are tight and iteration is fast.'
+  },
+  {
+    title: 'Conversion Optimization',
+    whyItFails: 'CRO often becomes a game of random tests and minor tweaks. Teams test button colors while ignoring broken value propositions. Without a framework, optimization is just guessing.',
+    howWeFix: 'We prioritize tests based on impact, not convenience. We look at the entire conversion path — from ad to landing page to checkout to follow-up. We measure what matters: revenue per visitor, not just conversion rate.'
+  },
+  {
+    title: 'Scale & Optimization Loops',
+    whyItFails: 'Growth stalls when there\'s no system for continuous improvement. What works at $10k/month in spend often breaks at $50k. Without feedback loops, problems compound instead of getting solved.',
+    howWeFix: 'We build systems that improve themselves. We create dashboards that surface real problems, not vanity metrics. We establish review rhythms that catch issues before they become crises. Growth should compound, not plateau.'
+  }
+];
+---
+
+<BaseLayout
+  title="Capabilities"
+  description="LeadLabs capabilities: Go-To-Market Strategy, Offer Architecture, Paid Acquisition, Conversion Optimization, and Scale Systems."
+  currentPath="/capabilities"
+>
+  <section class="capabilities-hero section">
+    <div class="container">
+      <h1>Capabilities</h1>
+      <p class="capabilities-intro">
+        We don't sell packages. We solve problems. Here's how we think about each capability.
+      </p>
+    </div>
+  </section>
+
+  <section class="capabilities-list">
+    <div class="container">
+      {capabilities.map((cap, index) => (
+        <article class="capability-block">
+          <h2>{cap.title}</h2>
+
+          <div class="capability-content">
+            <div class="capability-section">
+              <h3>Why It Fails</h3>
+              <p>{cap.whyItFails}</p>
+            </div>
+
+            <div class="capability-section">
+              <h3>How We Fix It</h3>
+              <p>{cap.howWeFix}</p>
+            </div>
+          </div>
+
+          {index < capabilities.length - 1 && <hr class="divider" />}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="capabilities-cta section" style="background-color: #FAFAFA;">
+    <div class="container">
+      <h2>See how we apply these capabilities</h2>
+      <p class="text-muted">Real problems. Real systems. Real outcomes.</p>
+      <a href="/work" class="btn btn-primary btn-lg mt-6">View Our Work</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .capabilities-hero {
+    padding-bottom: var(--space-12);
+  }
+
+  .capabilities-hero h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .capabilities-intro {
+    font-size: var(--text-xl);
+    color: var(--color-muted-text);
+    max-width: 600px;
+  }
+
+  .capabilities-list {
+    padding-bottom: var(--space-8);
+  }
+
+  .capability-block {
+    padding: var(--space-4) 0;
+  }
+
+  .capability-block h2 {
+    color: var(--color-primary-purple);
+    margin-bottom: var(--space-8);
+  }
+
+  .capability-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+
+  .capability-section h3 {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .capability-section p {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .capabilities-cta {
+    text-align: center;
+  }
+
+  .capabilities-cta h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  @media (max-width: 768px) {
+    .capabilities-intro {
+      font-size: var(--text-lg);
+    }
+
+    .capability-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+</style>

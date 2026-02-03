@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface CaseStudy {
+  id: string;
+  category: string;
+  context: string;
+  problem: string;
+  whatWeChanged: string[];
+  outcome: string[];
+  available: boolean;
+}
+
+const caseStudies: CaseStudy[] = [
+  {
+    id: 'insurance-acquisition',
+    category: 'Insurance',
+    context: 'B2C insurance product with established market presence struggling to scale paid acquisition profitably.',
+    problem: 'High customer acquisition costs were eating into margins. The existing funnel was optimized for volume, not unit economics. As spend increased, CPA grew disproportionately.',
+    whatWeChanged: [
+      'Restructured the core offer to improve perceived value without changing pricing',
+      'Rebuilt the landing page around a single conversion goal',
+      'Simplified the application flow from 12 steps to 4',
+      'Implemented qualification questions early to filter low-intent traffic'
+    ],
+    outcome: [
+      'Reduced CPA',
+      'Improved lead-to-sale conversion rate',
+      'Stabilized unit economics at higher spend levels'
+    ],
+    available: true
+  },
+  {
+    id: 'membership-platform',
+    category: 'Membership Platform',
+    context: 'Digital membership product with strong content but weak conversion infrastructure.',
+    problem: 'Traffic was arriving but not converting to paid members. The trial-to-paid rate was well below industry benchmarks. There was no systematic approach to moving users through the funnel.',
+    whatWeChanged: [
+      'Redesigned onboarding to demonstrate value within the first session',
+      'Built email sequences targeting specific drop-off points',
+      'Created urgency mechanics for trial expiration',
+      'Added social proof at key decision moments'
+    ],
+    outcome: [
+      'Tripled trial-to-paid conversion rate',
+      'Reduced time-to-first-purchase',
+      'Built repeatable conversion infrastructure'
+    ],
+    available: true
+  },
+  {
+    id: 'compliance-saas',
+    category: 'Compliance SaaS',
+    context: 'B2B compliance software with product-market fit but no scalable acquisition channel.',
+    problem: 'Growth was entirely referral-based. Attempts at paid acquisition had failed. There was no clear understanding of who the best customers were or how to reach them.',
+    whatWeChanged: [
+      'Defined ideal customer profile based on highest-LTV accounts',
+      'Built landing pages speaking directly to compliance pain points',
+      'Created a lead magnet that demonstrated expertise',
+      'Implemented demo booking flow optimized for qualified leads'
+    ],
+    outcome: [
+      'Built first profitable paid acquisition channel',
+      'Established repeatable lead generation system',
+      'Reduced sales cycle length through better qualification'
+    ],
+    available: true
+  },
+  {
+    id: 'ecommerce-brand',
+    category: 'E-commerce',
+    context: 'Direct-to-consumer brand with strong product but declining ad performance.',
+    problem: 'ROAS was declining as ad spend increased. Creative fatigue was evident. The offer structure wasn\'t competitive in a crowded market.',
+    whatWeChanged: [
+      'Restructured core offer with bundle mechanics',
+      'Built modular creative system for rapid testing',
+      'Implemented post-purchase upsell flow',
+      'Created retention sequences to improve LTV'
+    ],
+    outcome: [
+      'Stabilized ROAS at 2x previous spend level',
+      'Improved average order value',
+      'Built sustainable creative production process'
+    ],
+    available: false
+  }
+];
+---
+
+<BaseLayout
+  title="Work"
+  description="Case studies showing how LeadLabs builds GTM systems that convert. Real problems, real solutions, real outcomes."
+  currentPath="/work"
+>
+  <section class="work-hero section">
+    <div class="container">
+      <h1>Our Work</h1>
+      <p class="work-intro">
+        We prove competence through work, not words. These cases show how we think and execute.
+      </p>
+    </div>
+  </section>
+
+  <section class="cases-section">
+    <div class="container">
+      {caseStudies.map((study, index) => (
+        <article id={study.id} class="case-study">
+          <header class="case-header">
+            <span class="case-category">{study.category}</span>
+            <p class="case-context">{study.context}</p>
+          </header>
+
+          <div class="case-body">
+            <div class="case-section">
+              <h3>Problem</h3>
+              <p>{study.problem}</p>
+            </div>
+
+            <div class="case-section">
+              <h3>What We Changed</h3>
+              <ul>
+                {study.whatWeChanged.map(item => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="case-section">
+              <h3>Outcome</h3>
+              <ul class="outcomes">
+                {study.outcome.map(item => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+              {!study.available && (
+                <p class="case-note text-muted text-sm">Details available on request.</p>
+              )}
+            </div>
+          </div>
+
+          {index < caseStudies.length - 1 && <hr class="divider" />}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="work-cta section" style="background-color: #FAFAFA;">
+    <div class="container">
+      <h2>Ready to fix your GTM?</h2>
+      <p class="text-muted">If you're serious about growth, we should talk.</p>
+      <a href="/contact" class="btn btn-primary btn-lg mt-6">Work With Us</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .work-hero {
+    padding-bottom: var(--space-12);
+  }
+
+  .work-hero h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .work-intro {
+    font-size: var(--text-xl);
+    color: var(--color-muted-text);
+    max-width: 600px;
+  }
+
+  .cases-section {
+    padding-bottom: var(--space-16);
+  }
+
+  .case-study {
+    scroll-margin-top: calc(var(--header-height) + var(--space-8));
+  }
+
+  .case-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .case-category {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary-purple);
+    margin-bottom: var(--space-4);
+  }
+
+  .case-context {
+    font-size: var(--text-lg);
+    color: var(--color-primary-black);
+    max-width: 700px;
+    margin: 0;
+  }
+
+  .case-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  .case-section h3 {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .case-section p {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .case-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .case-section li {
+    position: relative;
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-2);
+    font-size: var(--text-base);
+    line-height: 1.6;
+  }
+
+  .case-section li::before {
+    content: '\2013';
+    position: absolute;
+    left: 0;
+    color: var(--color-muted-text);
+  }
+
+  .outcomes li::before {
+    content: '\2713';
+    color: var(--color-primary-purple);
+  }
+
+  .case-note {
+    margin-top: var(--space-4);
+  }
+
+  .work-cta {
+    text-align: center;
+  }
+
+  .work-cta h2 {
+    margin-bottom: var(--space-2);
+  }
+
+  @media (max-width: 1024px) {
+    .case-body {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .work-intro {
+      font-size: var(--text-lg);
+    }
+
+    .case-context {
+      font-size: var(--text-base);
+    }
+  }
+</style>
