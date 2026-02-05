@@ -194,20 +194,20 @@ async function startGeneration(request: VeoGenerateRequest): Promise<VeoOperatio
     throw new Error(`Veo API error (${response.status}): ${errorText}`);
   }
 
-  const result = await response.json();
+  const result = await response.json() as Record<string, unknown>;
 
   // For synchronous responses, convert to operation format
   if (result.candidates) {
     return {
       name: "direct-response",
       done: true,
-      response: result,
+      response: result as VeoOperation["response"],
     };
   }
 
   // For async operations
   if (result.name) {
-    return result as VeoOperation;
+    return result as unknown as VeoOperation;
   }
 
   throw new Error(`Unexpected Veo API response: ${JSON.stringify(result)}`);
