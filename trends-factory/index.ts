@@ -121,17 +121,21 @@ function printStatus(config: StateMachineConfig): void {
 
   console.log("");
   console.log("TRENDS FACTORY - Pipeline Status");
-  console.log("=".repeat(40));
-  console.log(`Project ID:  ${status.projectId}`);
-  console.log(`Stage:       ${status.stage}`);
-  console.log(`Trend:       ${status.trendName || "(not set)"}`);
-  console.log(`Scenes:      ${status.sceneCount}`);
+  console.log("=".repeat(50));
+  console.log(`Project ID:       ${status.projectId}`);
+  console.log(`Run ID:           ${status.runId}`);
+  console.log(`Seed:             ${status.seed}`);
+  console.log(`Stage:            ${status.stage}`);
+  console.log(`Trend:            ${status.trendName || "(not set)"}`);
+  console.log(`Quality Score:    ${status.qualityScore !== null ? `${status.qualityScore}/10` : "(not assessed)"}`);
+  console.log(`Scenes:           ${status.sceneCount}`);
+  console.log(`Regenerations:    ${status.regenerationCount}`);
 
   if (status.error) {
-    console.log(`Error:       ${status.error}`);
+    console.log(`Error:            ${status.error}`);
   }
 
-  console.log("=".repeat(40));
+  console.log("=".repeat(50));
   console.log("");
 }
 
