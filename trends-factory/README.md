@@ -18,18 +18,42 @@ Trends Factory is a **state-driven production pipeline** that orchestrates multi
 
 ## Quick Start
 
+### Option 1: Interactive Setup (Recommended)
+
 ```bash
-# 1. Install dependencies
+cd trends-factory
+npm install
+npm run setup
+```
+
+The setup wizard will guide you through configuration.
+
+### Option 2: Manual Setup
+
+**macOS/Linux:**
+```bash
+cd trends-factory
+npm install
+cp .env.example .env
+# Edit .env and add your GEMINI_API_KEY
+npm run generate
+```
+
+**Windows (PowerShell):**
+```powershell
 cd trends-factory
 npm install
 
-# 2. Create .env file with your Gemini API key
-cp .env.example .env
-# Edit .env and add your GEMINI_API_KEY
+# Run the setup wizard:
+.\setup.ps1
 
-# 3. Run the factory
+# OR create .env manually (IMPORTANT: no quotes around the value):
+Set-Content -Path .env -Value 'GEMINI_API_KEY=your_api_key_here'
+
 npm run generate
 ```
+
+> **Windows Users**: Do NOT use `echo "..." > .env` as it adds unwanted quotes to the file. Use `Set-Content` or the setup wizard instead.
 
 Output will be saved to: `output/final/trends_episode_xxx.mp4`
 
@@ -52,7 +76,13 @@ sudo apt update && sudo apt install ffmpeg
 ```
 
 **Windows:**
-Download from https://ffmpeg.org/download.html
+1. Download from https://www.gyan.dev/ffmpeg/builds/ (get "ffmpeg-release-essentials.zip")
+2. Extract to `C:\ffmpeg`
+3. Add `C:\ffmpeg\bin` to your PATH:
+   - Search "Environment Variables" in Windows
+   - Edit "Path" under User variables
+   - Add `C:\ffmpeg\bin`
+   - Restart PowerShell
 
 ## How It Works
 
@@ -311,7 +341,27 @@ All agents must:
 ## Troubleshooting
 
 ### "GEMINI_API_KEY environment variable is required"
-Create a `.env` file with your API key:
+
+The `.env` file is missing or malformed. Create it properly:
+
+**Option 1: Run setup wizard**
+```bash
+npm run setup
+```
+
+**Option 2: Manual (macOS/Linux)**
+```bash
+echo 'GEMINI_API_KEY=your_key_here' > .env
+```
+
+**Option 3: Manual (Windows PowerShell)**
+```powershell
+Set-Content -Path .env -Value 'GEMINI_API_KEY=your_key_here'
+```
+
+**IMPORTANT for Windows users:** Do NOT use `echo "..." > .env` in PowerShell - it adds quotes to the file content which breaks parsing. Use `Set-Content` instead.
+
+The `.env` file should contain ONLY this (no quotes):
 ```
 GEMINI_API_KEY=your_key_here
 ```
