@@ -14,8 +14,8 @@ export interface GeminiConfig {
   retryDelayMs?: number;
 }
 
-const DEFAULT_PRO_MODEL = "gemini-1.5-pro";
-const DEFAULT_FLASH_MODEL = "gemini-2.0-flash-exp";
+const DEFAULT_PRO_MODEL = "gemini-2.0-flash";
+const DEFAULT_FLASH_MODEL = "gemini-2.0-flash";
 const DEFAULT_MAX_RETRIES = 3;
 const DEFAULT_RETRY_DELAY_MS = 1000;
 
