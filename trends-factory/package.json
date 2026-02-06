@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
+    "setup": "node setup.js",
     "build": "tsc",
     "generate": "npm run build && node dist/index.js",
     "clean": "rm -rf dist output/scenes/* output/final/*",
